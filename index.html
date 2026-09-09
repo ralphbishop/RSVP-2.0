@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aika | An Evening of Elegance</title>
+<link rel="stylesheet" href="invitation.css">
+</head>
+<body class="is-loading">
+
+<!-- Floral SVG sprite sheet, reused across sections -->
+<svg width="0" height="0" style="position:absolute">
+  <defs id="floral-defs"></defs>
+</svg>
+
+<!-- ambient floral corners, fixed, fade based on scroll -->
+<div class="floral-layer" aria-hidden="true">
+  <img class="floral floral--tl" src="images/floral-corner.svg" alt="">
+  <img class="floral floral--bl" src="images/floral-corner-2.svg" alt="">
+  <img class="floral floral--tr" src="images/floral-corner.svg" alt="">
+</div>
+
+<!-- ============ SECTION 1 : LANDING / COVER ============ -->
+<section id="landing" class="landing">
+  <div class="landing__inner">
+    <div class="landing__stack"></div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <svg class="scroll-hint__arrow" viewBox="0 0 24 24" fill="none">
+      <path d="M12 4v16M12 20l-6-6M12 20l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ SPACER — controls scroll distance for the morph ============ -->
+<div id="morph-track" class="morph-track" aria-hidden="true"></div>
+
+<!-- ============ SECTION 2 : HOMEPAGE / INVITATION ============ -->
+<section id="home" class="home">
+  <div class="home__panel">
+
+    <p class="home__eyebrow">Dearest Family and Friends,</p>
+
+    <div class="home__body">
+      <p>
+        As I step into this new chapter of my life, I am filled with
+        gratitude for the people who have shaped my journey. Turning
+        eighteen is more than a milestone &mdash; it is a celebration of
+        growth, dreams, and the bonds that make life meaningful.
+      </p>
+      <p>
+        It would bring me great joy to have you by my side as we gather
+        for <em>An Evening of Elegance</em>, a night of laughter, memories,
+        and heartfelt moments. Your presence will make this occasion
+        truly unforgettable.
+      </p>
+    </div>
+
+    <!-- This is the LANDING SPOT for the morphing "Love, Aika" text -->
+    <div class="signature-slot" id="signature-slot" aria-hidden="true"></div>
+
+    <p class="home__event">An Evening of Elegance</p>
+
+    <div class="calendar" aria-label="October 2026 calendar, event on the 24th">
+      <img src="images/calendar.png" alt="October 2026 calendar, event on the 24th">
+    </div>
+
+  </div>
+
+  <div class="home__photo">
+    <div class="home__photo-frame">
+      <img src="images/aika-photo.png" alt="Litrato ni Aika" class="home__photo-img">
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ SPACER 2 — controls scroll distance for details reveal ============ -->
+<div id="details-track" class="details-track" aria-hidden="true"></div>
+
+<!-- ============ SECTION 3 : DETAILS ============ -->
+<section id="details" class="details">
+
+  <div class="details__dresscode-block">
+    <div class="details__dresscode">
+      <p class="details__dresscode-text">
+        Come dressed in your <em>finest semi-formal attire</em>, as <br> we honor
+        tradition with poise and beauty. Please <em>refrain from wearing pink</em> 
+      </p>
+    </div>
+
+    <div class="details__illustration">
+      <img src="images/dresscode.png" alt="Couple illustration" class="details__illustration-img">
+    </div>
+  </div>
+
+  <div class="details__palette">
+      <img src="images/color_pattern.png" alt="Color palette: Thristle, Swimming Hole, Jet Stream, Whole Wheat, Roast Peach" class="details__palette-img">
+    </div>
+
+  <div class="details__info">
+    <p class="details__info-text">
+      As the sun sets, let us gather at<em>5:00 PM</em> <br>in the evening to begin
+      this celebration of elegance. <br><br>We have reserved<em><br><span id="seat-count" class="seat-count" contenteditable="true" inputmode="numeric" spellcheck="false" title="I-click para baguhin ang bilang ng seats">2</span> seats for you.</em> 
+    </p>
+
+    <div class="link-generator" aria-hidden="false">
+      <button id="generate-link-btn" type="button" class="link-generator__btn">
+        Generate Link
+      </button>
+      <div id="generated-link-box" class="link-generator__result" hidden>
+        <input id="generated-link-input" type="text" class="link-generator__input" readonly>
+        <button id="copy-link-btn" type="button" class="link-generator__copy">Copy</button>
+      </div>
+      <p id="link-copied-msg" class="link-generator__copied" hidden>Na-copy sa clipboard!</p>
+    </div>
+    <p class="details__info-text">
+      The doors of <em>PMS Prime Private Resort and Events Place</em>
+      will open to welcome you into a night of grace and grandeur.
+    </p>
+
+    <div class="details__qr">
+      <img src="images/QR-Code.png" alt="QR code for RSVP" class="details__qr-img">
+    </div>
+  </div>
+
+</section>
+
+<script src="invitation.js"></script>
+</body>
+</html>
