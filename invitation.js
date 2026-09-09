@@ -199,9 +199,31 @@
     observer.observe(details);
   }
 
+  // ---- seat count from URL (?seats=N) ----
+  // When a guest opens a link that already has ?seats=N (generated via
+  // the button below), show that number immediately instead of the
+  // default. Returns true if a valid seats param was found, so the
+  // caller can treat this as "guest view" and hide the generator UI.
+  function applySeatCountFromURL() {
+    var el = document.getElementById("seat-count");
+    if (!el) return false;
+
+    var params = new URLSearchParams(window.location.search);
+    var raw = params.get("seats");
+    if (raw === null) return false;
+
+    var trimmed = raw.trim();
+    if (/^[0-9]+$/.test(trimmed) && parseInt(trimmed, 10) > 0) {
+      el.textContent = trimmed;
+      return true;
+    }
+    return false;
+  }
+
   // ---- editable seat count (details section) ----
   // Digits only, and if the guest clears it entirely we restore the
   // original value on blur instead of leaving the sentence broken.
+  // Only wired up in "host view" (no ?seats= in the URL) — see init().
   function initSeatCount() {
     var el = document.getElementById("seat-count");
     if (!el) return;
@@ -242,9 +264,8 @@
 
   // ---- Generate Link button ----
   // Takes whatever number is currently in #seat-count and builds a
-  // shareable link (current page URL + ?seats=N) so that opening that
-  // link later will show this same seat count. Also wires up the
-  // Copy button and a short "Na-copy sa clipboard!" confirmation.
+  // shareable link (current page URL + ?seats=N). Only wired up in
+  // "host view" — see init().
   function initLinkGenerator() {
     var btn = document.getElementById("generate-link-btn");
     var resultBox = document.getElementById("generated-link-box");
@@ -255,12 +276,11 @@
     if (!btn || !resultBox || !input || !copyBtn || !seatEl) return;
 
     btn.addEventListener("click", function () {
-      // make sure any in-progress edit is committed before reading the value
       seatEl.blur();
 
       var seats = seatEl.textContent.trim() || "2";
       var url = new URL(window.location.href);
-      url.search = ""; // drop any existing query params first
+      url.search = "";
       url.searchParams.set("seats", seats);
 
       input.value = url.toString();
@@ -294,21 +314,29 @@
     });
   }
 
-  // ---- seat count from URL (?seats=N) ----
-  // When a guest opens a link that already has ?seats=N (generated via
-  // the button above), show that number immediately instead of the
-  // default, so the recipient sees their own reserved seat count.
-  function applySeatCountFromURL() {
-    var el = document.getElementById("seat-count");
-    if (!el) return;
+  // ---- host view vs guest view ----
+  // A link with ?seats=N in it is what you send to a guest — on that
+  // link, the seat number is filled in automatically and the "Generate
+  // Link" tool (and the ability to edit the number) is hidden, so the
+  // guest only ever sees their invitation, never the editing controls.
+  // The plain link (no ?seats=) is your own "host view" where you can
+  // still edit the number and generate new links for other guests.
+  function initSeatFeature() {
+    var isGuestView = applySeatCountFromURL();
 
-    var params = new URLSearchParams(window.location.search);
-    var raw = params.get("seats");
-    if (raw === null) return;
+    var generatorEl = document.querySelector(".link-generator");
 
-    var trimmed = raw.trim();
-    if (/^[0-9]+$/.test(trimmed) && parseInt(trimmed, 10) > 0) {
-      el.textContent = trimmed;
+    if (isGuestView) {
+      if (generatorEl) generatorEl.hidden = true;
+      // seat number stays visible but not editable for guests
+      var seatEl = document.getElementById("seat-count");
+      if (seatEl) {
+        seatEl.removeAttribute("contenteditable");
+        seatEl.classList.remove("seat-count");
+      }
+    } else {
+      initSeatCount();
+      initLinkGenerator();
     }
   }
 
@@ -318,9 +346,7 @@
     update();
     playLoadFade();
     initDetailsReveal();
-    applySeatCountFromURL();
-    initSeatCount();
-    initLinkGenerator();
+    initSeatFeature();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
   }
