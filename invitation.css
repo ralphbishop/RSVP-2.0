@@ -547,6 +547,10 @@ body.is-loading .landing__inner {
   gap: 10px;
 }
 
+.link-generator[hidden] {
+  display: none !important;
+}
+
 .link-generator__btn {
   font-family: var(--font-display);
   font-size: 0.95rem;
