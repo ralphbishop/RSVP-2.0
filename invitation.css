@@ -532,7 +532,6 @@ body.is-loading .landing__inner {
   text-align: center;
   outline: none;
   cursor: text;
-  border-bottom: 1px dotted rgba(185, 107, 124, 0.5);
 }
 
 .seat-count:hover,
