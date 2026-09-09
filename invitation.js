@@ -327,7 +327,10 @@
     var generatorEl = document.querySelector(".link-generator");
 
     if (isGuestView) {
-      if (generatorEl) generatorEl.hidden = true;
+      if (generatorEl) {
+        generatorEl.hidden = true;
+        generatorEl.style.display = "none"; // belt-and-suspenders: guarantees hiding even if a CSS rule targets .link-generator directly
+      }
       // seat number stays visible but not editable for guests
       var seatEl = document.getElementById("seat-count");
       if (seatEl) {
