@@ -851,6 +851,10 @@ body.is-loading .landing__inner {
     margin-top: 16px;
   }
 
+  .details__dresscode-text .dresscode-break {
+    display: none;
+  }
+
   .details__illustration-img {
     max-width: 220px;
   }
