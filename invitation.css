@@ -649,17 +649,17 @@ body.is-loading .landing__inner {
     font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   }
   .details__illustration {
-    padding-left: 60px;
+    padding-left: 90px;
   }
   .details__illustration-img {
     width: 100%;
-    max-width: 600px;
+    max-width: 620px;
   }
   .details__palette-img {
-    flex-shrink: 0;
-    width: 320px;
+    width: 100%;
+    max-width: 560px;
     margin-top: 90px;
-    margin-right: 0;
+    margin-right: 140px;
   }
   .details__info {
     margin-left: -70px;
@@ -682,17 +682,17 @@ body.is-loading .landing__inner {
     font-size: clamp(1.05rem, 1.5vw, 1.3rem);
   }
   .details__illustration {
-    padding-left: 25px;
+    padding-left: 40px;
   }
   .details__illustration-img {
     width: 100%;
-    max-width: 500px;
+    max-width: 420px;
   }
   .details__palette-img {
-    flex-shrink: 0;
-    width: 240px;
+    width: 100%;
+    max-width: 360px;
     margin-top: 50px;
-    margin-right: 0;
+    margin-right: 30px;
   }
   .details__info {
     margin-left: -30px;
