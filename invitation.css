@@ -649,17 +649,17 @@ body.is-loading .landing__inner {
     font-size: clamp(1.2rem, 1.7vw, 1.55rem);
   }
   .details__illustration {
-    padding-left: 90px;
+    padding-left: 60px;
   }
   .details__illustration-img {
     width: 100%;
-    max-width: 620px;
+    max-width: 600px;
   }
   .details__palette-img {
-    width: 100%;
-    max-width: 560px;
+    flex-shrink: 0;
+    width: 320px;
     margin-top: 90px;
-    margin-right: 140px;
+    margin-right: 0;
   }
   .details__info {
     margin-left: -70px;
@@ -682,17 +682,17 @@ body.is-loading .landing__inner {
     font-size: clamp(1.05rem, 1.5vw, 1.3rem);
   }
   .details__illustration {
-    padding-left: 40px;
+    padding-left: 25px;
   }
   .details__illustration-img {
     width: 100%;
-    max-width: 420px;
+    max-width: 500px;
   }
   .details__palette-img {
-    width: 100%;
-    max-width: 360px;
+    flex-shrink: 0;
+    width: 240px;
     margin-top: 50px;
-    margin-right: 30px;
+    margin-right: 0;
   }
   .details__info {
     margin-left: -30px;
@@ -782,12 +782,12 @@ body.is-loading .landing__inner {
 
   .details__illustration-img {
     width: 100%;
-    max-width: 200px;
+    max-width: 220px;
   }
 
   .details__palette-img {
     width: 100%;
-    max-width: 200px;
+    max-width: 220px;
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -857,6 +857,11 @@ body.is-loading .landing__inner {
     max-height: 380px;
   }
 
+  .details {
+    padding: 60px 5vw 60px;
+    gap: 16px 12px;
+  }
+
   .details__dresscode-block {
     display: contents;
   }
@@ -884,7 +889,7 @@ body.is-loading .landing__inner {
   }
 
   .details__illustration-img {
-    max-width: 175px;
+    max-width: 200px;
   }
 
   .details__palette {
@@ -895,7 +900,7 @@ body.is-loading .landing__inner {
   }
 
   .details__palette-img {
-    max-width: 175px;
+    max-width: 200px;
     width: 100%;
     margin-top: 0;
     margin-right: 0;
@@ -973,7 +978,7 @@ body.is-loading .landing__inner {
     justify-content: center;
   }
   .details__illustration-img {
-    max-width: 200px;
+    max-width: 220px;
   }
   .details__palette {
     grid-area: palette;
@@ -981,7 +986,7 @@ body.is-loading .landing__inner {
     justify-content: center;
   }
   .details__palette-img {
-    max-width: 150px;
+    max-width: 170px;
     margin-top: 8px;
   }
   .details__info {
