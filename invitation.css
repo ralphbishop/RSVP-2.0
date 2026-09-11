@@ -858,8 +858,14 @@ body.is-loading .landing__inner {
   }
 
   .details {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "dressblock"
+      "illustration"
+      "palette"
+      "info";
     padding: 60px 5vw 60px;
-    gap: 16px 12px;
+    gap: 20px;
   }
 
   .details__dresscode-block {
@@ -882,26 +888,34 @@ body.is-loading .landing__inner {
 
   .details__illustration {
     grid-area: illustration;
-    padding-left: 0;
-    margin-top: 0;
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .details__illustration-img {
-    max-width: 240px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 240px;
+    max-height: 340px;
+    object-fit: contain;
   }
 
   .details__palette {
     grid-area: palette;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
   }
 
   .details__palette-img {
-    max-width: 240px;
+    display: block;
     width: 100%;
+    height: 100%;
+    min-height: 200px;
+    max-height: 300px;
+    object-fit: contain;
     margin-top: 0;
     margin-right: 0;
   }
@@ -973,21 +987,32 @@ body.is-loading .landing__inner {
   }
   .details__illustration {
     grid-area: illustration;
-    margin-top: 0;
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 240px;
   }
   .details__illustration-img {
-    max-width: 220px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    max-height: 260px;
+    object-fit: contain;
   }
   .details__palette {
     grid-area: palette;
-    display: flex;
-    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 200px;
   }
   .details__palette-img {
-    max-width: 170px;
-    margin-top: 8px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 150px;
+    max-height: 220px;
+    object-fit: contain;
+    margin-top: 0;
   }
   .details__info {
     margin-left: 0;
