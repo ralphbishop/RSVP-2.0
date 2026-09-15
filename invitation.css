@@ -1038,3 +1038,159 @@ body.is-loading .landing__inner {
     max-width: 260px;
   }
 }
+
+/* ==========================================================================
+   SECTION 4 — CREDITS (Eighteen Flowers / Eighteen Candles)
+   The intro line fades in over 5s once the section is scrolled into
+   view, via the .is-visible class added by JS IntersectionObserver.
+   ========================================================================== */
+
+.credits {
+  position: relative;
+  min-height: 100vh;
+  background-image: url(images/background_3.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  padding: 90px 6vw 100px;
+}
+
+.credits__intro {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  color: var(--sage-700);
+  text-align: center;
+  white-space: nowrap;
+  margin: 0 auto 56px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 8s var(--ease-soft);
+}
+
+.credits.is-visible .credits__intro {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credits__intro {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+.credits__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.credits__column {
+  text-align: center;
+}
+
+.credits__heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  color: var(--sage-700);
+  margin: 0 0 32px;
+}
+
+.credits__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.credits__list li {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  color: var(--sage-700);
+  letter-spacing: normal;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* Staggered reveal: only plays once .credits has .is-visible. Each name
+   fades up with a slightly later delay than the one before it — a
+   one-by-one "credits roll" feel, scroll-triggered rather than
+   auto-scrolling. nth-child is capped at 18 since both lists currently
+   have 18 names; add more rules if a list ever grows past that. */
+.credits.is-visible .credits__list li {
+  animation: credits-fade-up 1.8s var(--ease-soft) forwards;
+}
+
+.credits__list li:nth-child(1)  { animation-delay: 0.10s; }
+.credits__list li:nth-child(2)  { animation-delay: 0.60s; }
+.credits__list li:nth-child(3)  { animation-delay: 1.10s; }
+.credits__list li:nth-child(4)  { animation-delay: 1.60s; }
+.credits__list li:nth-child(5)  { animation-delay: 2.10s; }
+.credits__list li:nth-child(6)  { animation-delay: 2.60s; }
+.credits__list li:nth-child(7)  { animation-delay: 3.10s; }
+.credits__list li:nth-child(8)  { animation-delay: 3.60s; }
+.credits__list li:nth-child(9)  { animation-delay: 4.10s; }
+.credits__list li:nth-child(10) { animation-delay: 4.60s; }
+.credits__list li:nth-child(11) { animation-delay: 5.10s; }
+.credits__list li:nth-child(12) { animation-delay: 5.60s; }
+.credits__list li:nth-child(13) { animation-delay: 6.10s; }
+.credits__list li:nth-child(14) { animation-delay: 6.60s; }
+.credits__list li:nth-child(15) { animation-delay: 7.10s; }
+.credits__list li:nth-child(16) { animation-delay: 7.60s; }
+.credits__list li:nth-child(17) { animation-delay: 8.10s; }
+.credits__list li:nth-child(18) { animation-delay: 8.60s; }
+
+@keyframes credits-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credits__list li {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 980px) {
+  /* Below this width, nowrap no longer fits the sentence — 980px matches
+     the site's existing tablet breakpoint (used by .home/.details) and
+     is where the intro naturally stops needing to wrap anyway, so this
+     causes no visible change right at the boundary. Without this, widths
+     roughly 768–900px (many tablets in portrait and phones in landscape)
+     force the unwrapped text past the section edge, creating horizontal
+     scroll on the whole page. */
+  .credits__intro {
+    white-space: normal;
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .credits__columns {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 560px) {
+  .credits {
+    padding: 60px 6vw 70px;
+  }
+  .credits__heading {
+    margin-bottom: 24px;
+  }
+  .credits__list {
+    gap: 10px;
+  }
+}
