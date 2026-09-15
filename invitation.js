@@ -176,11 +176,13 @@
     });
   }
 
-  // ---- SECTION 3 fade/slide-in on scroll (IntersectionObserver) ----
-  function initDetailsReveal() {
-    var details = document.getElementById("details");
-    if (!details || !window.IntersectionObserver) {
-      if (details) details.classList.add("is-visible");
+  // ---- generic fade/slide-in on scroll (IntersectionObserver) ----
+  // Used for SECTION 3 (#details) and SECTION 4 (#credits): each section
+  // fades in via its own .is-visible class once it enters the viewport.
+  function initSectionReveal(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (!section || !window.IntersectionObserver) {
+      if (section) section.classList.add("is-visible");
       return;
     }
 
@@ -188,15 +190,15 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            details.classList.add("is-visible");
-            observer.unobserve(details);
+            section.classList.add("is-visible");
+            observer.unobserve(section);
           }
         });
       },
       { threshold: 0.15 }
     );
 
-    observer.observe(details);
+    observer.observe(section);
   }
 
   // ---- seat count from URL (?seats=N) ----
@@ -348,7 +350,8 @@
     addAccessibleHeading();
     update();
     playLoadFade();
-    initDetailsReveal();
+    initSectionReveal("details");
+    initSectionReveal("credits");
     initSeatFeature();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
