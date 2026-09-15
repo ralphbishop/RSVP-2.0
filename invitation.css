@@ -1060,7 +1060,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.1rem, 1.6vw, 1.5rem);
-  color: var(--sage-700);
+  color: #6b7556;
   text-align: center;
   white-space: nowrap;
   margin: 0 auto 56px;
@@ -1096,7 +1096,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.4rem, 2vw, 1.9rem);
-  color: var(--sage-700);
+  color: #6b7556;
   margin: 0 0 32px;
 }
 
@@ -1112,7 +1112,7 @@ body.is-loading .landing__inner {
 .credits__list li {
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.2vw, 1.2rem);
-  color: var(--sage-700);
+  color: #6b7556;
   letter-spacing: normal;
   opacity: 0;
   transform: translateY(14px);
