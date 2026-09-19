@@ -28,6 +28,10 @@
   --sage-700:   #4c5642;   /* deeper sage for eyebrow labels */
   --cream-50:   #fbf4ec;
 
+  /* -- dark section (A Piece of Me / Chapters of Tradition) -- */
+  --olive-700:  #6b7556;   /* dark background for the letter/timeline section */
+  --blush-pink: #f0c4cb;   /* light text on the olive background — headings, body, petals */
+
   /* -- type -- */
   --font-script: 'Amoresa', serif;
   --font-display: 'Maragsa', serif;
@@ -1060,7 +1064,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.1rem, 1.6vw, 1.5rem);
-  color: #6b7556;
+  color: var(--sage-700);
   text-align: center;
   white-space: nowrap;
   margin: 0 auto 56px;
@@ -1096,7 +1100,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.4rem, 2vw, 1.9rem);
-  color: #6b7556;
+  color: var(--sage-700);
   margin: 0 0 32px;
 }
 
@@ -1112,7 +1116,7 @@ body.is-loading .landing__inner {
 .credits__list li {
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.2vw, 1.2rem);
-  color: #6b7556;
+  color: var(--sage-700);
   letter-spacing: normal;
   opacity: 0;
   transform: translateY(14px);
@@ -1192,5 +1196,500 @@ body.is-loading .landing__inner {
   }
   .credits__list {
     gap: 10px;
+  }
+}
+/* ==========================================================================
+   SECTION 5 — TREASURES (Eighteen Bills / Eighteen Treasures)
+   Same treatment as SECTION 4: scroll-triggered fade via .is-visible,
+   staggered per-name fade-up (reuses @keyframes credits-fade-up so the
+   two roll-call sections feel identical). No intro line here — the
+   reference has none, so columns start directly under the padding.
+   ========================================================================== */
+
+.treasures {
+  position: relative;
+  min-height: 100vh;
+  background-image: url(images/background_4.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  padding: 90px 6vw 100px;
+}
+
+.treasures__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.treasures__column {
+  text-align: center;
+}
+
+.treasures__heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  color: var(--sage-700);
+  margin: 0 0 32px;
+}
+
+.treasures__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.treasures__list li {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  color: var(--sage-700);
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* Staggered reveal: only plays once .treasures has .is-visible. Same
+   timing as .credits__list (SECTION 4) for a consistent feel between
+   the two roll-call sections. nth-child is capped at 18 since both
+   lists have 18 names; add more rules if a list ever grows past that. */
+.treasures.is-visible .treasures__list li {
+  animation: credits-fade-up 1.8s var(--ease-soft) forwards;
+}
+
+.treasures__list li:nth-child(1)  { animation-delay: 0.10s; }
+.treasures__list li:nth-child(2)  { animation-delay: 0.60s; }
+.treasures__list li:nth-child(3)  { animation-delay: 1.10s; }
+.treasures__list li:nth-child(4)  { animation-delay: 1.60s; }
+.treasures__list li:nth-child(5)  { animation-delay: 2.10s; }
+.treasures__list li:nth-child(6)  { animation-delay: 2.60s; }
+.treasures__list li:nth-child(7)  { animation-delay: 3.10s; }
+.treasures__list li:nth-child(8)  { animation-delay: 3.60s; }
+.treasures__list li:nth-child(9)  { animation-delay: 4.10s; }
+.treasures__list li:nth-child(10) { animation-delay: 4.60s; }
+.treasures__list li:nth-child(11) { animation-delay: 5.10s; }
+.treasures__list li:nth-child(12) { animation-delay: 5.60s; }
+.treasures__list li:nth-child(13) { animation-delay: 6.10s; }
+.treasures__list li:nth-child(14) { animation-delay: 6.60s; }
+.treasures__list li:nth-child(15) { animation-delay: 7.10s; }
+.treasures__list li:nth-child(16) { animation-delay: 7.60s; }
+.treasures__list li:nth-child(17) { animation-delay: 8.10s; }
+.treasures__list li:nth-child(18) { animation-delay: 8.60s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .treasures__list li {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .treasures__columns {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 560px) {
+  .treasures {
+    padding: 60px 6vw 70px;
+  }
+  .treasures__heading {
+    margin-bottom: 24px;
+  }
+  .treasures__list {
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+   SECTION 6 — SHOTS (Eighteen Shots)
+   Single centered column (no left/right split like SECTION 4/5) — the
+   reference has florals framing one list, not a two-column layout.
+   Same reveal treatment: scroll-triggered fade via .is-visible,
+   staggered per-name fade-up (reuses @keyframes credits-fade-up).
+   ========================================================================== */
+
+.shots {
+  position: relative;
+  min-height: 100vh;
+  background-image: url(images/background_5.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  padding: 90px 6vw 100px;
+}
+
+.shots__inner {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.shots__heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  color: var(--sage-700);
+  margin: 0 0 32px;
+}
+
+.shots__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.shots__list li {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  color: var(--sage-700);
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* Staggered reveal: only plays once .shots has .is-visible. Same timing
+   as the other two roll-call sections. nth-child is capped at 18 since
+   the list has 18 names; add more rules if it ever grows past that. */
+.shots.is-visible .shots__list li {
+  animation: credits-fade-up 1.8s var(--ease-soft) forwards;
+}
+
+.shots__list li:nth-child(1)  { animation-delay: 0.10s; }
+.shots__list li:nth-child(2)  { animation-delay: 0.60s; }
+.shots__list li:nth-child(3)  { animation-delay: 1.10s; }
+.shots__list li:nth-child(4)  { animation-delay: 1.60s; }
+.shots__list li:nth-child(5)  { animation-delay: 2.10s; }
+.shots__list li:nth-child(6)  { animation-delay: 2.60s; }
+.shots__list li:nth-child(7)  { animation-delay: 3.10s; }
+.shots__list li:nth-child(8)  { animation-delay: 3.60s; }
+.shots__list li:nth-child(9)  { animation-delay: 4.10s; }
+.shots__list li:nth-child(10) { animation-delay: 4.60s; }
+.shots__list li:nth-child(11) { animation-delay: 5.10s; }
+.shots__list li:nth-child(12) { animation-delay: 5.60s; }
+.shots__list li:nth-child(13) { animation-delay: 6.10s; }
+.shots__list li:nth-child(14) { animation-delay: 6.60s; }
+.shots__list li:nth-child(15) { animation-delay: 7.10s; }
+.shots__list li:nth-child(16) { animation-delay: 7.60s; }
+.shots__list li:nth-child(17) { animation-delay: 8.10s; }
+.shots__list li:nth-child(18) { animation-delay: 8.60s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .shots__list li {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .shots {
+    padding: 60px 6vw 70px;
+  }
+  .shots__heading {
+    margin-bottom: 24px;
+  }
+  .shots__list {
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+   SECTION 7 — PIECE (A Piece of Me / Chapters of Tradition)
+   Dark olive background (inverted from the rest of the site — light
+   text on a dark base). Two asymmetric columns: a letter on the left,
+   a staggered "petal trail" timeline on the right. Petals are plain
+   CSS shapes (border-radius trick), not photorealistic — same spirit
+   as the reference without chasing its exact hand-placed offsets.
+   ========================================================================== */
+
+.piece {
+  position: relative;
+  min-height: 100vh;
+  background-image: url(images/background_6.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+  padding: 90px 6vw 100px;
+}
+
+.piece__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.piece__heading {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  color: var(--blush-pink);
+  margin: -0.15em 0 28px;
+  margin-left: 100px;
+  line-height: 1.1;
+  word-spacing: 15px;
+  display: inline-block;
+  padding: 0.35em 0.35em 0.4em 0.1em;
+  clip-path: inset(0 100% 0 0);
+}
+
+.piece.is-visible .piece__heading {
+  animation: piece-heading-write 1.3s var(--ease-soft) forwards;
+}
+
+@keyframes piece-heading-write {
+  to { clip-path: inset(0 0% 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece__heading {
+    clip-path: none;
+    animation: none;
+  }
+}
+
+.piece__letter {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.piece__letter p {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+  line-height: 1.5;
+  color: var(--blush-pink);
+  text-align: justify;
+  text-indent: 1.5em;
+  margin: 0;
+}
+
+/* blinking cursor shown only on the paragraph currently being typed
+   (JS toggles this class as the typewriter effect progresses) */
+.piece__letter p.is-typing::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  animation: piece-cursor-blink 0.8s steps(1) infinite;
+}
+
+@keyframes piece-cursor-blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece__letter p.is-typing::after {
+    animation: none;
+    content: '';
+  }
+}
+
+/* the reference itself skips the indent on this one paragraph
+   ("Here's to eighteen...") — matching that exactly rather than
+   evening it out */
+.piece__letter p:nth-child(4) {
+  text-indent: 0;
+}
+
+.piece__signature {
+  margin: 28px 0 0;
+  font-family: var(--font-script);
+  color: var(--blush-pink);
+  line-height: 1.1;
+  width: fit-content;
+}
+
+.piece__signature-love,
+.piece__signature-aika {
+  margin-left: 250px;
+  display: block;
+  font-size: clamp(1.8rem, 4vw, 15rem);
+}
+
+.piece__signature-aika {
+  padding-top: 10px;
+  text-align: right;
+  padding-left: 100px;
+}
+
+.piece__timeline {
+  list-style: none;
+  margin: 0;
+  padding-left: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.piece__timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* soft zigzag — same organic "petal trail" idea as the reference,
+   without chasing its exact hand-placed pixel offsets */
+.piece__timeline-item:nth-child(even) {
+  margin-left: clamp(20px, 4vw, 48px);
+}
+
+.piece__petal {
+  flex-shrink: 0;
+  width: 40px;
+  height: 50px;
+  background-image: url(images/petals.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* fall-in starting state: uses the standalone `translate` property
+     (not `transform`) so this composes independently of each petal's
+     own transform: rotate(...) below, instead of overwriting it. */
+  opacity: 0;
+  translate: 0 -46px;
+}
+
+/* each petal rotated individually, alternating direction roughly in
+   step with the odd/even zigzag above — matches the reference's
+   varied hand-placed angles instead of one uniform rotation */
+.piece__timeline-item:nth-child(1)  .piece__petal { transform: rotate(-18deg); }
+.piece__timeline-item:nth-child(2)  .piece__petal { transform: rotate(-180deg); }
+.piece__timeline-item:nth-child(3)  .piece__petal { transform: rotate(-100deg); transform: scale(1, -1); }
+.piece__timeline-item:nth-child(4)  .piece__petal { transform: rotate(140deg); }
+.piece__timeline-item:nth-child(5)  .piece__petal { transform: rotate(-200deg); }
+.piece__timeline-item:nth-child(6)  .piece__petal { transform: rotate(-5deg); }
+.piece__timeline-item:nth-child(7)  .piece__petal { transform: rotate(-14deg); transform: scale(1, -1);}
+.piece__timeline-item:nth-child(8)  .piece__petal { transform: rotate(24deg); transform: scale(1, -1);}
+.piece__timeline-item:nth-child(9)  .piece__petal { transform: rotate(170deg); }
+.piece__timeline-item:nth-child(10) .piece__petal { transform: rotate(-10deg); }
+
+.piece__timeline-label {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  color: var(--blush-pink);
+  opacity: 0;
+}
+
+/* ---- scroll-triggered reveal: petals fall into place, then each
+   label fades in right as its petal lands. Only plays once #piece
+   has .is-visible (added by initSectionReveal("piece") in JS). ---- */
+.piece.is-visible .piece__petal {
+  animation: piece-petal-fall 0.8s var(--ease-soft) forwards;
+}
+
+.piece.is-visible .piece__timeline-label {
+  animation: piece-label-fade 0.7s var(--ease-soft) forwards;
+}
+
+@keyframes piece-petal-fall {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes piece-label-fade {
+  to { opacity: 1; }
+}
+
+/* Stagger: each item's petal falls, then its label fades in right as
+   that petal lands (label delay = petal delay + fall duration). */
+.piece__timeline-item:nth-child(1)  .piece__petal { animation-delay: 1.45s; }
+.piece__timeline-item:nth-child(1)  .piece__timeline-label { animation-delay: 2.25s; }
+.piece__timeline-item:nth-child(2)  .piece__petal { animation-delay: 1.8s; }
+.piece__timeline-item:nth-child(2)  .piece__timeline-label { animation-delay: 2.6s; }
+.piece__timeline-item:nth-child(3)  .piece__petal { animation-delay: 2.15s; }
+.piece__timeline-item:nth-child(3)  .piece__timeline-label { animation-delay: 2.95s; }
+.piece__timeline-item:nth-child(4)  .piece__petal { animation-delay: 2.5s; }
+.piece__timeline-item:nth-child(4)  .piece__timeline-label { animation-delay: 3.3s; }
+.piece__timeline-item:nth-child(5)  .piece__petal { animation-delay: 2.85s; }
+.piece__timeline-item:nth-child(5)  .piece__timeline-label { animation-delay: 3.65s; }
+.piece__timeline-item:nth-child(6)  .piece__petal { animation-delay: 3.2s; }
+.piece__timeline-item:nth-child(6)  .piece__timeline-label { animation-delay: 4s; }
+.piece__timeline-item:nth-child(7)  .piece__petal { animation-delay: 3.55s; }
+.piece__timeline-item:nth-child(7)  .piece__timeline-label { animation-delay: 4.35s; }
+.piece__timeline-item:nth-child(8)  .piece__petal { animation-delay: 3.9s; }
+.piece__timeline-item:nth-child(8)  .piece__timeline-label { animation-delay: 4.7s; }
+.piece__timeline-item:nth-child(9)  .piece__petal { animation-delay: 4.25s; }
+.piece__timeline-item:nth-child(9)  .piece__timeline-label { animation-delay: 5.05s; }
+.piece__timeline-item:nth-child(10) .piece__petal { animation-delay: 4.6s; }
+.piece__timeline-item:nth-child(10) .piece__timeline-label { animation-delay: 5.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .piece__petal,
+  .piece__timeline-label {
+    opacity: 1;
+    translate: 0 0;
+    animation: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .piece__grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+}
+
+@media (max-width: 560px) {
+  .piece {
+    padding: 60px 6vw 70px;
+  }
+  .piece__timeline-item:nth-child(even) {
+    margin-left: clamp(12px, 6vw, 28px);
+  }
+}
+
+/* ==========================================================================
+   ADD TO CALENDAR — Google Calendar link + downloadable .ics, generated
+   in JS (initAddToCalendar) so the event details live in one place and
+   never need manual URL-encoding by hand.
+   ========================================================================== */
+
+.calendar-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.calendar-add__link {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--rose-600);
+  background: transparent;
+  color: var(--rose-600);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.calendar-add__link:hover {
+  background: var(--rose-600);
+  color: #fff;
+}
+
+@media (max-width: 560px) {
+  .calendar-add {
+    justify-content: center;
+  }
+  .calendar-add__link {
+    font-size: 0.8rem;
+    padding: 8px 14px;
   }
 }
