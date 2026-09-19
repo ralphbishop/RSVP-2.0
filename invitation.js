@@ -316,6 +316,122 @@
     });
   }
 
+  // ---- typewriter effect for the personal letter (SECTION 7 / #piece) ----
+  // Blanks each <p> in .piece__letter, then types its real text back in
+  // character by character, one paragraph at a time — the next paragraph
+  // only starts once the current one is fully typed. Toggles the
+  // .is-typing class (used by the existing CSS blinking-cursor ::after)
+  // on whichever paragraph is currently being typed. Starts once #piece
+  // scrolls into view; skipped entirely under prefers-reduced-motion,
+  // leaving the real text in place immediately.
+  // ---- Add to Calendar (Google Calendar link + downloadable .ics) ----
+  // Both links are generated here from one set of event details, using
+  // encodeURIComponent() so nothing needs to be hand-encoded — safer
+  // than baking a pre-encoded URL/data-URI directly into the HTML.
+  function initAddToCalendar() {
+    var googleLink = document.getElementById("calendar-google");
+    var icsLink = document.getElementById("calendar-ics");
+    if (!googleLink && !icsLink) return;
+
+    var title = "An Evening of Elegance \u2014 Aika's 18th Birthday";
+    var location = "PMS Prime Private Resort and Events Place";
+    var description =
+      "Join us for An Evening of Elegance as we celebrate Aika's " +
+      "18th birthday. Semi-formal attire, please refrain from wearing pink.";
+    // October 24, 2026, 5:00 PM\u201311:00 PM Philippine Time (UTC+8)
+    // = 09:00\u201315:00 UTC. Adjust here if the actual end time differs.
+    var startUTC = "20261024T090000Z";
+    var endUTC = "20261024T150000Z";
+
+    if (googleLink) {
+      var googleURL = "https://calendar.google.com/calendar/render" +
+        "?action=TEMPLATE" +
+        "&text=" + encodeURIComponent(title) +
+        "&dates=" + startUTC + "/" + endUTC +
+        "&details=" + encodeURIComponent(description) +
+        "&location=" + encodeURIComponent(location);
+      googleLink.href = googleURL;
+    }
+
+    if (icsLink) {
+      var icsLines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Aika 18th Birthday//Invitation//EN",
+        "BEGIN:VEVENT",
+        "UID:aika-18th-birthday-2026@invitation.local",
+        "DTSTAMP:" + startUTC,
+        "DTSTART:" + startUTC,
+        "DTEND:" + endUTC,
+        "SUMMARY:" + title,
+        "DESCRIPTION:" + description.replace(/,/g, "\\,"),
+        "LOCATION:" + location,
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ];
+      var icsContent = icsLines.join("\r\n");
+      icsLink.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(icsContent);
+    }
+  }
+
+  function initLetterTypewriter() {
+    var letter = document.querySelector(".piece__letter");
+    if (!letter) return;
+
+    var paragraphs = Array.prototype.slice.call(letter.querySelectorAll("p"));
+    if (!paragraphs.length) return;
+
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return; // real text already in place — nothing to do
+
+    var originalTexts = paragraphs.map(function (p) { return p.textContent; });
+    paragraphs.forEach(function (p) { p.textContent = ""; });
+
+    var CHAR_DELAY = 16; // ms per character
+
+    function typeParagraph(index) {
+      if (index >= paragraphs.length) return;
+      var p = paragraphs[index];
+      var text = originalTexts[index];
+      var i = 0;
+
+      p.classList.add("is-typing");
+
+      function step() {
+        p.textContent = text.slice(0, i);
+        i++;
+        if (i <= text.length) {
+          window.setTimeout(step, CHAR_DELAY);
+        } else {
+          p.classList.remove("is-typing");
+          typeParagraph(index + 1);
+        }
+      }
+
+      step();
+    }
+
+    var piece = document.getElementById("piece");
+    if (!piece || !window.IntersectionObserver) {
+      typeParagraph(0);
+      return;
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            typeParagraph(0);
+            observer.unobserve(piece);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(piece);
+  }
+
   // ---- host view vs guest view ----
   // A link with ?seats=N in it is what you send to a guest — on that
   // link, the seat number is filled in automatically and the "Generate
@@ -352,6 +468,11 @@
     playLoadFade();
     initSectionReveal("details");
     initSectionReveal("credits");
+    initSectionReveal("treasures");
+    initSectionReveal("shots");
+    initSectionReveal("piece");
+    initAddToCalendar();
+    initLetterTypewriter();
     initSeatFeature();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
