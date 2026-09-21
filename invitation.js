@@ -379,40 +379,6 @@
   // wire up the Continue button, so a guest is never trapped if something
   // goes wrong. Clicking a calendar button does NOT dismiss the gate —
   // only the explicit "View the Invitation" button does.
-  function initSaveTheDateGate() {
-    var gate = document.getElementById("save-the-date");
-    var continueBtn = document.getElementById("std-continue");
-    var hint = document.getElementById("std-continue-hint");
-    var googleBtn = document.getElementById("std-calendar-google");
-    var icsBtn = document.getElementById("std-calendar-ics");
-    if (!gate || !continueBtn) return;
-
-    gate.classList.add("is-active");
-    document.body.classList.add("gate-active");
-
-    // Continue starts disabled (also set in HTML as a no-JS-safe default).
-    // Clicking EITHER calendar option unlocks it — the guest only needs
-    // to save the date on whichever platform they actually use.
-    function unlockContinue() {
-      continueBtn.disabled = false;
-      if (hint) hint.classList.add("is-hidden");
-    }
-
-    if (googleBtn) googleBtn.addEventListener("click", unlockContinue);
-    if (icsBtn) icsBtn.addEventListener("click", unlockContinue);
-
-    continueBtn.addEventListener("click", function () {
-      if (continueBtn.disabled) return;
-      gate.classList.add("is-dismissing");
-      document.body.classList.remove("gate-active");
-      // wait for the opacity transition (0.6s in CSS) before fully
-      // removing the gate from layout/interaction
-      window.setTimeout(function () {
-        gate.classList.remove("is-active", "is-dismissing");
-      }, 650);
-    });
-  }
-
   function initLetterTypewriter() {
     var letter = document.querySelector(".piece__letter");
     if (!letter) return;
@@ -505,13 +471,12 @@
     addAccessibleHeading();
     update();
     playLoadFade();
-    initSaveTheDateGate();
     initSectionReveal("details");
     initSectionReveal("credits");
     initSectionReveal("treasures");
     initSectionReveal("shots");
     initSectionReveal("piece");
-    initAddToCalendar("std-calendar-google", "std-calendar-ics");
+    initAddToCalendar("piece-calendar-google", "piece-calendar-ics");
     initLetterTypewriter();
     initSeatFeature();
     window.addEventListener("scroll", onScroll, { passive: true });
