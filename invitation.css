@@ -1313,7 +1313,11 @@ body.is-loading .landing__inner {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+  .treasures {
+    background-image: linear-gradient(rgba(236, 201, 206, 0.70), rgba(236, 201, 206, 0.80)), url(images/background_4.png);
+  }
 }
+
 
 @media (max-width: 560px) {
   .treasures {
