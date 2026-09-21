@@ -328,9 +328,9 @@
   // Both links are generated here from one set of event details, using
   // encodeURIComponent() so nothing needs to be hand-encoded — safer
   // than baking a pre-encoded URL/data-URI directly into the HTML.
-  function initAddToCalendar() {
-    var googleLink = document.getElementById("calendar-google");
-    var icsLink = document.getElementById("calendar-ics");
+  function initAddToCalendar(googleId, icsId) {
+    var googleLink = document.getElementById(googleId);
+    var icsLink = document.getElementById(icsId);
     if (!googleLink && !icsLink) return;
 
     var title = "An Evening of Elegance \u2014 Aika's 18th Birthday";
@@ -374,6 +374,45 @@
     }
   }
 
+  // ---- Save the Date gate — mandatory first screen ----
+  // Adds .is-active (making the gate visible/fixed) only when JS can also
+  // wire up the Continue button, so a guest is never trapped if something
+  // goes wrong. Clicking a calendar button does NOT dismiss the gate —
+  // only the explicit "View the Invitation" button does.
+  function initSaveTheDateGate() {
+    var gate = document.getElementById("save-the-date");
+    var continueBtn = document.getElementById("std-continue");
+    var hint = document.getElementById("std-continue-hint");
+    var googleBtn = document.getElementById("std-calendar-google");
+    var icsBtn = document.getElementById("std-calendar-ics");
+    if (!gate || !continueBtn) return;
+
+    gate.classList.add("is-active");
+    document.body.classList.add("gate-active");
+
+    // Continue starts disabled (also set in HTML as a no-JS-safe default).
+    // Clicking EITHER calendar option unlocks it — the guest only needs
+    // to save the date on whichever platform they actually use.
+    function unlockContinue() {
+      continueBtn.disabled = false;
+      if (hint) hint.classList.add("is-hidden");
+    }
+
+    if (googleBtn) googleBtn.addEventListener("click", unlockContinue);
+    if (icsBtn) icsBtn.addEventListener("click", unlockContinue);
+
+    continueBtn.addEventListener("click", function () {
+      if (continueBtn.disabled) return;
+      gate.classList.add("is-dismissing");
+      document.body.classList.remove("gate-active");
+      // wait for the opacity transition (0.6s in CSS) before fully
+      // removing the gate from layout/interaction
+      window.setTimeout(function () {
+        gate.classList.remove("is-active", "is-dismissing");
+      }, 650);
+    });
+  }
+
   function initLetterTypewriter() {
     var letter = document.querySelector(".piece__letter");
     if (!letter) return;
@@ -388,7 +427,7 @@
     var originalTexts = paragraphs.map(function (p) { return p.textContent; });
     paragraphs.forEach(function (p) { p.textContent = ""; });
 
-    var CHAR_DELAY = 16; // ms per character
+    var CHAR_DELAY = 8; // ms per character
 
     function typeParagraph(index) {
       if (index >= paragraphs.length) return;
@@ -466,12 +505,13 @@
     addAccessibleHeading();
     update();
     playLoadFade();
+    initSaveTheDateGate();
     initSectionReveal("details");
     initSectionReveal("credits");
     initSectionReveal("treasures");
     initSectionReveal("shots");
     initSectionReveal("piece");
-    initAddToCalendar();
+    initAddToCalendar("std-calendar-google", "std-calendar-ics");
     initLetterTypewriter();
     initSeatFeature();
     window.addEventListener("scroll", onScroll, { passive: true });
