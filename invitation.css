@@ -1066,7 +1066,7 @@ body.is-loading .landing__inner {
 .credits {
   position: relative;
   min-height: 100vh;
-  background-image: url(images/background_3.png);
+  background-image: linear-gradient(rgba(236, 201, 206, 0.40), rgba(236, 201, 206, 0.50)), url(images/background_3.png);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
