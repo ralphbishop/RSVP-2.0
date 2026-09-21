@@ -1719,6 +1719,13 @@ body.is-loading .landing__inner {
     width: 32px;
     height: 40px;
   }
+  .piece__calendar-label {
+    font-size: clamp(1.3rem, 9vw, 1.8rem);
+  }
+  .piece__calendar-btn {
+    font-size: 0.75rem;
+    padding: 8px 14px;
+  }
 }
 
 /* ==========================================================================
@@ -1728,56 +1735,54 @@ body.is-loading .landing__inner {
    generated in JS (initAddToCalendar) so nothing needs hand-encoding.
    ========================================================================== */
 
-.piece__calendar-add {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 64px;
-}
+  .piece__calendar-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+  }
 
-.piece__calendar-label {
-  font-family: var(--font-script);
-  font-weight: 400;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  color: var(--blush-pink);
-  margin: 0 0 16px;
-}
+  .piece__calendar-label {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--blush-pink);
+    margin: 0 0 16px;
+  }
 
-.piece__calendar-btns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-}
+  .piece__calendar-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
 
-.piece__calendar-btn {
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  padding: 10px 22px;
-  border-radius: 999px;
-  border: 1px solid var(--blush-pink);
-  background: transparent;
-  color: var(--blush-pink);
-  text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
-  white-space: nowrap;
-}
+  .piece__calendar-btn {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--blush-pink);
+    background: transparent;
+    color: #6b7556;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
 
-.piece__calendar-btn:hover {
-  background: var(--blush-pink);
-  color: #3f4a34;
-}
+  .piece__calendar-btn:hover {
+    background: var(--blush-pink);
+    color: #3f4a34;
+  }
 
-.piece__calendar-btn--primary {
-  background: var(--blush-pink);
-  color: #3f4a34;
-}
+  .piece__calendar-btn--primary {
+    background: var(--blush-pink);
+  }
 
-.piece__calendar-btn--primary:hover {
-  background: #fff;
-  border-color: #fff;
-}
+   .piece__calendar-btn--secondary {
+    background: var(--blush-pink);
+  }
 
 @media (max-width: 560px) {
   .piece__calendar-add {
