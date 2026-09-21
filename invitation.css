@@ -1722,163 +1722,69 @@ body.is-loading .landing__inner {
 }
 
 /* ==========================================================================
-   SAVE THE DATE GATE — mandatory first screen. Hidden by default (base
-   CSS) so a broken/disabled JS never traps a guest behind an unremovable
-   overlay; JS opts this in via .is-active only when it can also wire up
-   the Continue button that dismisses it.
+   ADD TO CALENDAR — sits at the bottom of SECTION 7 (#piece), styled to
+   fit its dark olive background and blush-pink text, instead of the
+   removed Save the Date gate. Google Calendar link + downloadable .ics,
+   generated in JS (initAddToCalendar) so nothing needs hand-encoding.
    ========================================================================== */
 
-.save-the-date {
-  display: none;
-}
-
-.save-the-date.is-active {
+.piece__calendar-add {
   display: flex;
-  position: fixed;
-  inset: 0;
-  z-index: 999;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: radial-gradient(120% 100% at 50% 20%, var(--blush-50) 0%, var(--blush-100) 60%, var(--blush-200) 100%);
-  opacity: 1;
-  transition: opacity 0.6s var(--ease-soft);
+  margin-top: 64px;
 }
 
-.save-the-date.is-dismissing {
-  opacity: 0;
-  pointer-events: none;
-}
-
-body.gate-active {
-  overflow: hidden;
-  height: 100vh;
-  height: 100dvh;
-}
-
-.save-the-date__inner {
-  text-align: center;
-  padding: 0 24px;
-  max-width: 480px;
-}
-
-.save-the-date__eyebrow {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  color: #6b7556;
-  margin: 0 0 8px;
-}
-
-.save-the-date__title {
+.piece__calendar-label {
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: var(--rose-500);
-  margin: 0 0 12px;
-  line-height: 1;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--blush-pink);
+  margin: 0 0 16px;
 }
 
-.save-the-date__event {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  color: #6b7556;
-  margin: 0 0 4px;
-}
-
-.save-the-date__date {
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
-  color: #6b7556;
-  margin: 0 0 32px;
-}
-
-.save-the-date__calendar-actions {
+.piece__calendar-btns {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  margin: 0 0 24px;
+  gap: 14px;
 }
 
-.save-the-date__btn {
+.piece__calendar-btn {
   font-family: var(--font-display);
   font-size: 0.9rem;
   letter-spacing: 0.5px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 999px;
-  border: 1px solid var(--rose-600);
+  border: 1px solid var(--blush-pink);
   background: transparent;
-  color: var(--rose-600);
+  color: var(--blush-pink);
   text-decoration: none;
   transition: background 0.2s ease, color 0.2s ease;
   white-space: nowrap;
 }
 
-.save-the-date__btn:hover {
-  background: var(--rose-600);
-  color: #fff;
+.piece__calendar-btn:hover {
+  background: var(--blush-pink);
+  color: #3f4a34;
 }
 
-.save-the-date__btn--primary {
-  background: var(--rose-500);
-  color: #fff;
-  border-color: var(--rose-500);
+.piece__calendar-btn--primary {
+  background: var(--blush-pink);
+  color: #3f4a34;
 }
 
-.save-the-date__btn--primary:hover {
-  background: var(--rose-600);
-  border-color: var(--rose-600);
-}
-
-.save-the-date__continue {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  letter-spacing: 0.5px;
-  color: #6b7556;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #6b7556;
-  padding: 4px 2px;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.save-the-date__continue:hover {
-  opacity: 0.7;
-}
-
-.save-the-date__continue:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.save-the-date__continue:disabled:hover {
-  opacity: 0.35;
-}
-
-.save-the-date__hint {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: #6b7556;
-  font-style: italic;
-  margin: 10px 0 0;
-  transition: opacity 0.3s ease;
-}
-
-.save-the-date__hint.is-hidden {
-  opacity: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .save-the-date.is-active {
-    transition: none;
-  }
+.piece__calendar-btn--primary:hover {
+  background: #fff;
+  border-color: #fff;
 }
 
 @media (max-width: 560px) {
-  .save-the-date__calendar-actions {
-    flex-direction: column;
-    align-items: stretch;
+  .piece__calendar-add {
+    margin-top: 44px;
+  }
+  .piece__calendar-btn {
+    font-size: 0.8rem;
+    padding: 9px 16px;
   }
 }
