@@ -706,6 +706,20 @@ body.is-loading .landing__inner {
   .details__qr {
     margin-left: -15px;
   }
+
+  .piece__heading {
+    margin-left: 40px;
+  }
+  .piece__signature-love,
+  .piece__signature-aika {
+    margin-left: 90px;
+  }
+  .piece__signature-aika {
+    padding-left: 40px;
+  }
+  .piece__timeline {
+    padding-left: 80px;
+  }
 }
 
 /* ==========================================================================
@@ -1064,13 +1078,13 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.1rem, 1.6vw, 1.5rem);
-  color: var(--sage-700);
+  color: #6b7556;
   text-align: center;
   white-space: nowrap;
   margin: 0 auto 56px;
   line-height: 1.5;
   opacity: 0;
-  transition: opacity 8s var(--ease-soft);
+  transition: opacity 5s var(--ease-soft);
 }
 
 .credits.is-visible .credits__intro {
@@ -1100,7 +1114,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.4rem, 2vw, 1.9rem);
-  color: var(--sage-700);
+  color: #6b7556;
   margin: 0 0 32px;
 }
 
@@ -1116,7 +1130,7 @@ body.is-loading .landing__inner {
 .credits__list li {
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.2vw, 1.2rem);
-  color: var(--sage-700);
+  color: #6b7556;
   letter-spacing: normal;
   opacity: 0;
   transform: translateY(14px);
@@ -1233,7 +1247,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.4rem, 2vw, 1.9rem);
-  color: var(--sage-700);
+  color: #6b7556;
   margin: 0 0 32px;
 }
 
@@ -1249,7 +1263,7 @@ body.is-loading .landing__inner {
 .treasures__list li {
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.2vw, 1.2rem);
-  color: var(--sage-700);
+  color: #6b7556;
   opacity: 0;
   transform: translateY(14px);
 }
@@ -1337,7 +1351,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.4rem, 2vw, 1.9rem);
-  color: var(--sage-700);
+  color: #6b7556;
   margin: 0 0 32px;
 }
 
@@ -1353,7 +1367,7 @@ body.is-loading .landing__inner {
 .shots__list li {
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.2vw, 1.2rem);
-  color: var(--sage-700);
+  color: #6b7556;
   opacity: 0;
   transform: translateY(14px);
 }
@@ -1436,7 +1450,7 @@ body.is-loading .landing__inner {
   font-family: var(--font-script);
   font-weight: 400;
   font-size: clamp(2rem, 3.2vw, 3rem);
-  color: var(--blush-pink);
+  color: #f0c4cb;
   margin: -0.15em 0 28px;
   margin-left: 100px;
   line-height: 1.1;
@@ -1507,7 +1521,7 @@ body.is-loading .landing__inner {
 .piece__signature {
   margin: 28px 0 0;
   font-family: var(--font-script);
-  color: var(--blush-pink);
+  color: #f0c4cb;
   line-height: 1.1;
   width: fit-content;
 }
@@ -1639,7 +1653,20 @@ body.is-loading .landing__inner {
 @media (max-width: 980px) {
   .piece__grid {
     grid-template-columns: 1fr;
-    gap: 64px;
+    gap: 56px;
+  }
+  .piece__heading {
+    margin-left: 20px;
+  }
+  .piece__signature-love,
+  .piece__signature-aika {
+    margin-left: 30px;
+  }
+  .piece__signature-aika {
+    padding-left: 20px;
+  }
+  .piece__timeline {
+    padding-left: 40px;
   }
 }
 
@@ -1647,29 +1674,138 @@ body.is-loading .landing__inner {
   .piece {
     padding: 60px 6vw 70px;
   }
+  .piece__heading {
+    margin-left: 30px;
+  }
+  .piece__signature-love,
+  .piece__signature-aika {
+    margin-left: 180px;
+  }
+  .piece__signature-aika {
+    padding-left: 16px;
+  }
+  .piece__timeline {
+    padding-left: 80px;
+  }
   .piece__timeline-item:nth-child(even) {
     margin-left: clamp(12px, 6vw, 28px);
   }
 }
 
-/* ==========================================================================
-   ADD TO CALENDAR — Google Calendar link + downloadable .ics, generated
-   in JS (initAddToCalendar) so the event details live in one place and
-   never need manual URL-encoding by hand.
-   ========================================================================== */
-
-.calendar-add {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 18px;
+@media (max-width: 320px) {
+  .piece {
+    padding: 48px 5vw 56px;
+  }
+  .piece__grid {
+    gap: 44px;
+  }
+  .piece__heading {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+  }
+  .piece__signature-love,
+  .piece__signature-aika {
+    font-size: clamp(1.5rem, 10vw, 2.2rem);
+  }
+  .piece__signature-aika {
+    padding-left: 8px;
+  }
+  .piece__timeline {
+    padding-left: 0;
+  }
+  .piece__timeline-label {
+    font-size: 0.85rem;
+  }
+  .piece__petal {
+    width: 32px;
+    height: 40px;
+  }
 }
 
-.calendar-add__link {
+/* ==========================================================================
+   SAVE THE DATE GATE — mandatory first screen. Hidden by default (base
+   CSS) so a broken/disabled JS never traps a guest behind an unremovable
+   overlay; JS opts this in via .is-active only when it can also wire up
+   the Continue button that dismisses it.
+   ========================================================================== */
+
+.save-the-date {
+  display: none;
+}
+
+.save-the-date.is-active {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(120% 100% at 50% 20%, var(--blush-50) 0%, var(--blush-100) 60%, var(--blush-200) 100%);
+  opacity: 1;
+  transition: opacity 0.6s var(--ease-soft);
+}
+
+.save-the-date.is-dismissing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.gate-active {
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.save-the-date__inner {
+  text-align: center;
+  padding: 0 24px;
+  max-width: 480px;
+}
+
+.save-the-date__eyebrow {
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-style: italic;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #6b7556;
+  margin: 0 0 8px;
+}
+
+.save-the-date__title {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--rose-500);
+  margin: 0 0 12px;
+  line-height: 1;
+}
+
+.save-the-date__event {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: #6b7556;
+  margin: 0 0 4px;
+}
+
+.save-the-date__date {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: #6b7556;
+  margin: 0 0 32px;
+}
+
+.save-the-date__calendar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 24px;
+}
+
+.save-the-date__btn {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
   letter-spacing: 0.5px;
-  padding: 9px 18px;
+  padding: 10px 20px;
   border-radius: 999px;
   border: 1px solid var(--rose-600);
   background: transparent;
@@ -1679,17 +1815,70 @@ body.is-loading .landing__inner {
   white-space: nowrap;
 }
 
-.calendar-add__link:hover {
+.save-the-date__btn:hover {
   background: var(--rose-600);
   color: #fff;
 }
 
-@media (max-width: 560px) {
-  .calendar-add {
-    justify-content: center;
+.save-the-date__btn--primary {
+  background: var(--rose-500);
+  color: #fff;
+  border-color: var(--rose-500);
+}
+
+.save-the-date__btn--primary:hover {
+  background: var(--rose-600);
+  border-color: var(--rose-600);
+}
+
+.save-the-date__continue {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: #6b7556;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #6b7556;
+  padding: 4px 2px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.save-the-date__continue:hover {
+  opacity: 0.7;
+}
+
+.save-the-date__continue:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.save-the-date__continue:disabled:hover {
+  opacity: 0.35;
+}
+
+.save-the-date__hint {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: #6b7556;
+  font-style: italic;
+  margin: 10px 0 0;
+  transition: opacity 0.3s ease;
+}
+
+.save-the-date__hint.is-hidden {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .save-the-date.is-active {
+    transition: none;
   }
-  .calendar-add__link {
-    font-size: 0.8rem;
-    padding: 8px 14px;
+}
+
+@media (max-width: 560px) {
+  .save-the-date__calendar-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
