@@ -257,6 +257,7 @@ body.is-loading .landing__inner {
   text-align: justify;
   padding-left: 250px;
   max-width: 580px;
+  text-indent: 30px;
 }
 
 .home__body em {
@@ -297,7 +298,7 @@ body.is-loading .landing__inner {
   max-width: 580px;
   aspect-ratio: 420 / 320;
   overflow: hidden;
-  box-shadow: 0 18px 40px -22px rgba(90, 40, 55, 0.35);
+
 }
 
 .calendar img {
@@ -321,7 +322,7 @@ body.is-loading .landing__inner {
   width: 100%;
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 30px 60px -30px rgba(90, 40, 55, 0.4);
+  
 }
 
 /* Actual photo of Aika — replaces .photo-placeholder once an image is
@@ -750,12 +751,12 @@ body.is-loading .landing__inner {
     max-height: 480px;
   }
   .calendar {
-    position: relative;
-    bottom: auto;
-    left: auto;
+    position: absolute;
+    left: 60px;
     transform: none;
     margin: 20px auto 0;
     max-width: 340px;
+    bottom: 500px;
   }
 
   .details {
@@ -850,6 +851,7 @@ body.is-loading .landing__inner {
   }
 
   .home__eyebrow {
+    padding-top: 150px;
     padding-left: 0;
     max-width: none;
   }
@@ -857,6 +859,7 @@ body.is-loading .landing__inner {
     text-align: left;
     padding-left: 0;
     max-width: none;
+    margin: 20px;
   }
   .signature-slot {
     padding-left: 0;
@@ -896,7 +899,7 @@ body.is-loading .landing__inner {
 
   .details__dresscode-text {
     font-size: clamp(1.15rem, 4.5vw, 1.4rem);
-    margin-left: 0;
+    margin: 30px;
     margin-top: 16px;
   }
 
@@ -1089,6 +1092,8 @@ body.is-loading .landing__inner {
 
 .credits.is-visible .credits__intro {
   opacity: 1;
+  transition-delay: .2s;
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1116,6 +1121,20 @@ body.is-loading .landing__inner {
   font-size: clamp(1.4rem, 2vw, 1.9rem);
   color: #6b7556;
   margin: 0 0 32px;
+  opacity: 0;
+  transition: opacity 3s var(--ease-soft);
+}
+
+.credits.is-visible .credits__heading {
+  opacity: 1;
+  transition-delay: 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credits__heading {
+    opacity: 1;
+    transition: none;
+  }
 }
 
 .credits__list {
@@ -1133,7 +1152,7 @@ body.is-loading .landing__inner {
   color: #6b7556;
   letter-spacing: normal;
   opacity: 0;
-  transform: translateY(14px);
+  transition: opacity 5s var(--ease-soft);
 }
 
 /* Staggered reveal: only plays once .credits has .is-visible. Each name
@@ -1142,27 +1161,28 @@ body.is-loading .landing__inner {
    auto-scrolling. nth-child is capped at 18 since both lists currently
    have 18 names; add more rules if a list ever grows past that. */
 .credits.is-visible .credits__list li {
-  animation: credits-fade-up 1.8s var(--ease-soft) forwards;
+   opacity: 1;
+  transition-delay: 2s;
 }
 
-.credits__list li:nth-child(1)  { animation-delay: 0.10s; }
-.credits__list li:nth-child(2)  { animation-delay: 0.60s; }
-.credits__list li:nth-child(3)  { animation-delay: 1.10s; }
-.credits__list li:nth-child(4)  { animation-delay: 1.60s; }
-.credits__list li:nth-child(5)  { animation-delay: 2.10s; }
-.credits__list li:nth-child(6)  { animation-delay: 2.60s; }
-.credits__list li:nth-child(7)  { animation-delay: 3.10s; }
-.credits__list li:nth-child(8)  { animation-delay: 3.60s; }
-.credits__list li:nth-child(9)  { animation-delay: 4.10s; }
-.credits__list li:nth-child(10) { animation-delay: 4.60s; }
-.credits__list li:nth-child(11) { animation-delay: 5.10s; }
-.credits__list li:nth-child(12) { animation-delay: 5.60s; }
-.credits__list li:nth-child(13) { animation-delay: 6.10s; }
-.credits__list li:nth-child(14) { animation-delay: 6.60s; }
-.credits__list li:nth-child(15) { animation-delay: 7.10s; }
-.credits__list li:nth-child(16) { animation-delay: 7.60s; }
-.credits__list li:nth-child(17) { animation-delay: 8.10s; }
-.credits__list li:nth-child(18) { animation-delay: 8.60s; }
+.credits__list li:nth-child(1)  { animation-delay: 25.9s; }
+.credits__list li:nth-child(2)  { animation-delay: 6.4s; }
+.credits__list li:nth-child(3)  { animation-delay: 6.9s; }
+.credits__list li:nth-child(4)  { animation-delay: 7.4s; }
+.credits__list li:nth-child(5)  { animation-delay: 7.9s; }
+.credits__list li:nth-child(6)  { animation-delay: 8.4s; }
+.credits__list li:nth-child(7)  { animation-delay: 8.9s; }
+.credits__list li:nth-child(8)  { animation-delay: 9.4s; }
+.credits__list li:nth-child(9)  { animation-delay: 9.9s; }
+.credits__list li:nth-child(10) { animation-delay: 10.4s; }
+.credits__list li:nth-child(11) { animation-delay: 10.9s; }
+.credits__list li:nth-child(12) { animation-delay: 11.4s; }
+.credits__list li:nth-child(13) { animation-delay: 11.9s; }
+.credits__list li:nth-child(14) { animation-delay: 12.4s; }
+.credits__list li:nth-child(15) { animation-delay: 12.9s; }
+.credits__list li:nth-child(16) { animation-delay: 13.4s; }
+.credits__list li:nth-child(17) { animation-delay: 13.9s; }
+.credits__list li:nth-child(18) { animation-delay: 14.4s; }
 
 @keyframes credits-fade-up {
   to {
@@ -1210,6 +1230,10 @@ body.is-loading .landing__inner {
   .credits {
     padding: 60px 6vw 70px;
   }
+  .credits__intro{
+    margin: 20px;
+    padding-bottom: 20px;
+  }
   .credits__heading {
     margin-bottom: 24px;
   }
@@ -1254,6 +1278,12 @@ body.is-loading .landing__inner {
   font-size: clamp(1.4rem, 2vw, 1.9rem);
   color: #6b7556;
   margin: 0 0 32px;
+  opacity: 0;
+  transition: opacity 5s var(--ease-soft);
+}
+.treasures.is-visible .treasures__heading {
+  opacity: 1;
+  transition-delay: .2s;
 }
 
 .treasures__list {
@@ -1270,7 +1300,7 @@ body.is-loading .landing__inner {
   font-size: clamp(1rem, 1.2vw, 1.2rem);
   color: #6b7556;
   opacity: 0;
-  transform: translateY(14px);
+  transition: opacity 5s var(--ease-soft);
 }
 
 /* Staggered reveal: only plays once .treasures has .is-visible. Same
@@ -1278,8 +1308,10 @@ body.is-loading .landing__inner {
    the two roll-call sections. nth-child is capped at 18 since both
    lists have 18 names; add more rules if a list ever grows past that. */
 .treasures.is-visible .treasures__list li {
-  animation: credits-fade-up 1.8s var(--ease-soft) forwards;
+  opacity: 1;
+  transition-delay: 2s;
 }
+
 
 .treasures__list li:nth-child(1)  { animation-delay: 0.10s; }
 .treasures__list li:nth-child(2)  { animation-delay: 0.60s; }
@@ -1362,8 +1394,14 @@ body.is-loading .landing__inner {
   font-size: clamp(1.4rem, 2vw, 1.9rem);
   color: #6b7556;
   margin: 0 0 32px;
+  opacity: 0;
+  transition: opacity 5s var(--ease-soft);
 }
 
+.shots.is-visible .shots__heading {
+  opacity: 1;
+  transition-delay: .2s;
+}
 .shots__list {
   list-style: none;
   margin: 0;
@@ -1378,14 +1416,15 @@ body.is-loading .landing__inner {
   font-size: clamp(1rem, 1.2vw, 1.2rem);
   color: #6b7556;
   opacity: 0;
-  transform: translateY(14px);
+  transition: opacity 5s var(--ease-soft);
 }
 
 /* Staggered reveal: only plays once .shots has .is-visible. Same timing
    as the other two roll-call sections. nth-child is capped at 18 since
    the list has 18 names; add more rules if it ever grows past that. */
 .shots.is-visible .shots__list li {
-  animation: credits-fade-up 1.8s var(--ease-soft) forwards;
+  opacity: 1;
+  transition-delay: 2s;
 }
 
 .shots__list li:nth-child(1)  { animation-delay: 0.10s; }
@@ -1487,17 +1526,17 @@ body.is-loading .landing__inner {
 .piece__letter {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 5px;
 }
 
 .piece__letter p {
   font-family: var(--font-display);
   font-size: clamp(0.95rem, 1.05vw, 1.1rem);
-  line-height: 1.5;
+  line-height: 1.3;
   color: var(--blush-pink);
   text-align: justify;
   text-indent: 1.5em;
-  margin: 0;
+  margin: 20px;
 }
 
 /* blinking cursor shown only on the paragraph currently being typed
@@ -1533,6 +1572,19 @@ body.is-loading .landing__inner {
   color: #f0c4cb;
   line-height: 1.1;
   width: fit-content;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-soft);
+}
+
+.piece__signature.is-revealed {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piece__signature {
+    opacity: 1;
+    transition: none;
+  }
 }
 
 .piece__signature-love,
@@ -1684,7 +1736,9 @@ body.is-loading .landing__inner {
     padding: 60px 6vw 70px;
   }
   .piece__heading {
-    margin-left: 30px;
+    margin-left: 50px;
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    word-spacing: 8px;
   }
   .piece__signature-love,
   .piece__signature-aika {
@@ -1790,7 +1844,8 @@ body.is-loading .landing__inner {
   }
 
    .piece__calendar-btn--secondary {
-    background: var(--blush-pink);
+    background: #e2691a;
+     color: #3f4a34;
   }
 
 @media (max-width: 560px) {
